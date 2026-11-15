@@ -1,250 +1,118 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Class Get-Together — You're Invited</title>
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Class Reunion — 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-/* layout: a long scrolling invitation card — hero, memories, details, vote, form, rules, footer */
-:root{
-  --bg:#faf7f1;
-  --surface:#ffffff;
-  --ink:#241f1a;
-  --muted:#7a7066;
-  --accent:#b5572e;
-  --accent-ink:#ffffff;
-  --accent-soft:#f1decf;
-  --line:#e7ddcd;
-  --warn-bg:#fdf1df;
-  --warn-ink:#8a5412;
-  --font-display:'Fraunces',Georgia,serif;
-  --font-body:'Inter',ui-sans-serif,system-ui,sans-serif;
-}
-@media (prefers-color-scheme: dark){
-  :root{
-    --bg:#1b1713;
-    --surface:#252019;
-    --ink:#f3ece1;
-    --muted:#a99d8d;
-    --accent:#e3824f;
-    --accent-ink:#1b1713;
-    --accent-soft:#3a2a1d;
-    --line:#3a332a;
-    --warn-bg:#352611;
-    --warn-ink:#f0bb77;
-    color-scheme:dark;
-  }
-}
-*{box-sizing:border-box}
-html,body{margin:0}
-body{
-  background:var(--bg);
-  color:var(--ink);
-  font-family:var(--font-body);
-  padding-left:max(16px, env(safe-area-inset-left,0px));
-  padding-right:max(16px, env(safe-area-inset-right,0px));
-}
-.wrap{max-width:760px;margin:0 auto}
-h1,h2,h3{font-family:var(--font-display);text-wrap:balance;margin:0}
-section{padding-block:40px}
-.eyebrow{
-  font-family:var(--font-body);font-size:12px;font-weight:700;
-  letter-spacing:.1em;text-transform:uppercase;color:var(--accent);
-  margin:0 0 10px;
-}
-
-/* hero */
-.hero{text-align:center;padding-block:52px 36px}
-.hero h1{font-size:clamp(34px,8vw,56px);line-height:1.05;font-weight:600}
-.hero .sub{color:var(--muted);font-size:17px;max-width:30em;margin:16px auto 0}
-.hero .date-line{
-  font-family:var(--font-display);font-size:clamp(20px,4vw,26px);
-  color:var(--accent);margin-top:22px;
-}
-.countdown{display:flex;justify-content:center;gap:14px;margin-top:22px;flex-wrap:wrap}
-.countdown .unit{min-width:68px}
-.countdown .n{font-family:var(--font-display);font-size:28px;font-weight:600;font-variant-numeric:tabular-nums}
-.countdown .l{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-
-/* photo collage */
-.collage{display:grid;grid-template-columns:1.2fr 1fr 1fr;grid-template-rows:140px 140px;gap:8px;margin-top:30px}
-.collage .ph:nth-child(1){grid-row:1 / 3}
-.ph{
-  border-radius:12px;overflow:hidden;position:relative;
-  background:linear-gradient(135deg,var(--accent-soft),var(--surface));
-  display:flex;align-items:center;justify-content:center;
-  border:1px dashed var(--line);
-}
-.ph img{width:100%;height:100%;object-fit:cover;display:block}
-.ph .ph-label{font-size:12px;color:var(--muted);text-align:center;padding:8px}
-@media (max-width:480px){
-  .collage{grid-template-columns:1fr 1fr;grid-template-rows:110px 110px 110px}
-  .collage .ph:nth-child(1){grid-row:auto;grid-column:1/3;height:150px}
-}
-
-/* memories gallery */
-.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}
-@media (max-width:480px){.gallery-grid{grid-template-columns:repeat(2,1fr)}}
-.gallery-grid .ph{aspect-ratio:1/1;height:auto}
-
-.lede{color:var(--muted);font-size:16px;max-width:36em}
-
-/* cards */
-.card{
-  background:var(--surface);border:1px solid var(--line);
-  border-radius:16px;padding:24px 26px;margin-top:18px;
-}
-.card h2{font-size:21px;margin-bottom:12px}
-.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-@media (max-width:480px){.grid2{grid-template-columns:1fr}}
-.item .k{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.item .v{font-size:16px;margin-top:5px;line-height:1.45}
-.fill{border-bottom:1px dashed var(--accent);color:var(--accent);font-style:italic}
-
-table{width:100%;border-collapse:collapse;font-size:15px;margin-top:4px}
-th{text-align:left;color:var(--muted);font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;padding:7px 8px;border-bottom:1px solid var(--line)}
-td{padding:11px 8px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
-tr.current td{font-weight:700;color:var(--accent)}
-tr.current td:first-child::after{content:" — current pick";font-weight:500;color:var(--muted);font-size:13px}
-
-ul.rules{margin:0;padding-left:20px;line-height:1.75;font-size:15.5px}
-ul.rules li{margin-bottom:5px}
-
-.notice{background:var(--warn-bg);color:var(--warn-ink);border-radius:12px;padding:14px 18px;font-size:14.5px;margin-top:18px;line-height:1.55}
-
-/* form embed */
-.form-box{margin-top:16px;border-radius:14px;border:1px solid var(--line);overflow:hidden;background:var(--surface)}
-.form-box iframe{width:100%;height:900px;border:0;display:block}
-.form-fallback{padding:26px;text-align:center}
-.form-fallback p{color:var(--muted);font-size:15px;margin:0 0 14px}
-.cta{
-  display:inline-block;background:var(--accent);color:var(--accent-ink);
-  font-weight:700;font-size:15.5px;padding:14px 26px;border-radius:30px;
-  text-decoration:none;
-}
-
-footer{color:var(--muted);font-size:13px;margin:36px 0 50px;line-height:1.7;text-align:center}
-footer .fill{color:var(--muted);border-bottom-color:var(--muted)}
+:root{--ink:#192b27;--green:#234c3b;--lime:#d7ef8b;--cream:#f7f5ee;--muted:#68746d;--line:#e3e5dc;--white:#fff;--orange:#ef9b62}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif}a{color:inherit;text-decoration:none}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}
+nav{height:78px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e6e6dc}.brand{display:flex;align-items:center;gap:11px;font-weight:700;letter-spacing:-.4px}.brand-mark{width:38px;height:38px;background:var(--green);color:var(--lime);border-radius:50%;display:grid;place-items:center;font-family:'Playfair Display';font-size:20px}.navlinks{display:flex;gap:28px;font-size:13px;color:#4f5d55}.navlinks a:hover{color:var(--green)}.nav-cta{padding:12px 18px;border-radius:30px;background:var(--green);color:white;font-size:13px;font-weight:700}
+.hero{padding:62px 0 56px;display:grid;grid-template-columns:1.02fr .98fr;gap:55px;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--green);font-size:11px;font-weight:700;letter-spacing:1.7px;text-transform:uppercase}.dot{height:7px;width:7px;border-radius:50%;background:#ee9c62}.hero h1{font-family:'Playfair Display',serif;font-size:clamp(46px,6vw,76px);line-height:1.02;letter-spacing:-2.8px;font-weight:600;margin:22px 0 20px}.hero h1 em{font-style:italic;color:#55785c}.hero p{color:var(--muted);font-size:16px;line-height:1.8;max-width:480px;margin:0 0 28px}.actions{display:flex;gap:12px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:15px 21px;border-radius:30px;font-size:13px;font-weight:700;border:1px solid transparent;cursor:pointer;transition:.2s}.btn-primary{background:var(--green);color:#fff}.btn-primary:hover{background:#163b2c;transform:translateY(-1px)}.btn-secondary{border-color:#d6dbd0;background:transparent}.btn-secondary:hover{background:#eeeee5}.hero-note{font-size:11px;color:#778078;margin-top:18px}.photo-stack{height:460px;position:relative}.photo-main{position:absolute;inset:0 26px 28px 20px;border-radius:180px 180px 20px 20px;background:linear-gradient(145deg,#a8b9a0,#e5d6bd 52%,#758a73);overflow:hidden}.photo-main img{width:100%;height:100%;object-fit:cover;display:block}.photo-placeholder{height:100%;display:flex;align-items:center;justify-content:center;text-align:center;padding:35px;background:linear-gradient(160deg,#d6ddc9,#a7b9a1 55%,#e6d6be);color:#2a4638}.photo-placeholder .sun{font-size:52px;display:block;margin-bottom:15px}.photo-placeholder strong{display:block;font-family:'Playfair Display';font-size:27px;line-height:1.15}.photo-placeholder small{display:block;margin-top:12px;font-size:11px;letter-spacing:1px;text-transform:uppercase}.float-card{position:absolute;background:#fffdf7;padding:17px 19px;border-radius:15px;box-shadow:0 15px 35px #203b2c1a}.date-card{left:0;bottom:0;min-width:165px}.date-card span{font-size:10px;letter-spacing:1.5px;color:var(--muted);font-weight:700}.date-card strong{display:block;font-family:'Playfair Display';font-size:29px;margin-top:4px}.date-card small{font-size:12px;color:var(--muted)}.memory-card{right:0;top:50px;transform:rotate(4deg);font-size:12px;line-height:1.5}.memory-card b{display:block;font-family:'Playfair Display';font-size:17px}.memory-card span{color:var(--muted)}
+.strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0;display:flex;justify-content:center;gap:35px;flex-wrap:wrap;color:#526257;font-size:12px}.strip span{display:flex;align-items:center;gap:8px}.strip b{color:var(--green);font-size:16px}
+section{padding:78px 0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:25px;margin-bottom:30px}.kicker{font-size:11px;text-transform:uppercase;letter-spacing:1.7px;color:#6d806c;font-weight:700}.section-head h2{font-family:'Playfair Display';font-size:clamp(34px,4vw,48px);letter-spacing:-1.3px;line-height:1.1;margin:10px 0 0;font-weight:600}.section-head p{max-width:350px;color:var(--muted);font-size:13px;line-height:1.7;margin:0}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:#fffdf8;border:1px solid var(--line);border-radius:18px;padding:25px;min-height:205px}.card .ico{width:42px;height:42px;display:grid;place-items:center;border-radius:13px;background:#edf1e5;font-size:20px;margin-bottom:23px}.card h3{font-family:'Playfair Display';font-size:22px;margin:0 0 8px}.card p{font-size:13px;line-height:1.7;color:var(--muted);margin:0}.tag{display:inline-block;margin-top:16px;border-radius:20px;background:#f1f0e8;padding:7px 10px;font-size:10px;font-weight:700;color:#62705e}
+.vote-section{background:#e9eee2}.vote-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:50px;align-items:start}.vote-intro h2{font-family:'Playfair Display';font-size:44px;line-height:1.1;letter-spacing:-1.5px;margin:12px 0 17px}.vote-intro p{font-size:14px;line-height:1.8;color:var(--muted)}.note{border-left:3px solid var(--orange);padding:12px 15px;background:#f7f5ee;border-radius:0 10px 10px 0;font-size:12px;line-height:1.65;margin-top:24px}.panel{background:#fffdf8;border:1px solid #dce2d6;border-radius:20px;padding:27px}.panel h3{font-family:'Playfair Display';font-size:24px;margin:0 0 5px}.sub{color:var(--muted);font-size:12px;margin:0 0 22px}.date-options{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.date-option{position:relative}.date-option input{position:absolute;opacity:0}.date-option label{display:block;border:1px solid var(--line);border-radius:12px;padding:14px;cursor:pointer;transition:.15s}.date-option label strong{display:block;font-size:13px}.date-option label small{display:block;color:var(--muted);font-size:11px;margin-top:4px}.date-option input:checked+label{border-color:var(--green);background:#edf3e5;box-shadow:inset 0 0 0 1px var(--green)}.date-option input:checked+label:after{content:'✓';float:right;color:var(--green);font-weight:700;margin-top:-22px}.field{margin-top:17px}.field label,.field-title{display:block;font-size:12px;font-weight:700;margin-bottom:8px}.field input,.field select,.field textarea{width:100%;border:1px solid #dfe2d9;border-radius:10px;background:#fff;padding:13px 14px;font:inherit;font-size:13px;color:var(--ink);outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:#6c8a6b;box-shadow:0 0 0 3px #dce9d5}.field textarea{resize:vertical;min-height:88px}.choices{display:flex;gap:8px;flex-wrap:wrap}.choice{position:relative}.choice input{position:absolute;opacity:0}.choice label{display:block;border:1px solid var(--line);border-radius:25px;padding:10px 13px;font-size:11px;cursor:pointer}.choice input:checked+label{background:var(--green);border-color:var(--green);color:#fff}.checkline{display:flex;gap:10px;align-items:flex-start;font-size:11px;line-height:1.5;color:var(--muted);margin:17px 0}.checkline input{margin-top:2px;accent-color:var(--green)}.submit{width:100%;border:0}.form-msg{display:none;margin-top:14px;padding:12px;border-radius:10px;background:#e8f2dc;color:#234c3b;font-size:12px;line-height:1.6}
+.idea-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.idea-box{padding:24px;border:1px solid var(--line);border-radius:16px;background:#fffdf8}.idea-box h3{font-family:'Playfair Display';font-size:22px;margin:0 0 8px}.idea-box p{font-size:12px;line-height:1.7;color:var(--muted);margin:0 0 17px}.idea-list{display:flex;flex-wrap:wrap;gap:8px}.idea-list span{background:#f0f1e9;border-radius:30px;padding:9px 12px;font-size:11px}.budget{background:var(--green);color:white;border-radius:20px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:25px;margin-top:25px}.budget h3{font-family:'Playfair Display';font-size:28px;margin:0 0 8px}.budget p{font-size:12px;color:#d0ddcf;line-height:1.7;max-width:550px;margin:0}.budget .amount{font-family:'Playfair Display';font-size:24px;color:var(--lime);white-space:nowrap}
+.gallery{background:#f0eee5}.gallery-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:14px;height:270px}.gallery-tile{border-radius:16px;overflow:hidden;position:relative;background:linear-gradient(145deg,#d7dfcd,#9eb39d 55%,#e7d4bb);display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;color:#34513e}.gallery-tile:nth-child(2){background:linear-gradient(145deg,#e7d8c4,#bdc7a9)}.gallery-tile:nth-child(3){background:linear-gradient(145deg,#b8c9b3,#e8d9c2)}.gallery-tile .gallery-label{font-family:'Playfair Display';font-size:24px;line-height:1.2}.gallery-tile small{display:block;font:10px 'DM Sans';letter-spacing:1.3px;text-transform:uppercase;margin-top:10px}.gallery-hint{font-size:11px;color:var(--muted);margin-top:13px}
+footer{padding:32px 0;border-top:1px solid var(--line)}.footer-row{display:flex;align-items:center;justify-content:space-between;gap:20px;color:var(--muted);font-size:11px}.footer-row strong{color:var(--ink)}
+@media(max-width:800px){.navlinks{display:none}.hero{grid-template-columns:1fr;gap:25px;padding-top:42px}.hero-copy{order:0}.photo-stack{height:370px;max-width:520px;width:100%;margin:auto}.hero h1{font-size:55px}.section-head{display:block}.section-head p{margin-top:15px}.cards{grid-template-columns:1fr}.vote-layout{grid-template-columns:1fr;gap:25px}.idea-grid{grid-template-columns:1fr}.gallery-grid{grid-template-columns:1fr 1fr;height:auto}.gallery-tile{min-height:180px}.gallery-tile:first-child{grid-column:span 2}.budget{align-items:flex-start;flex-direction:column}.strip{gap:14px 24px}}@media(max-width:460px){.wrap{width:min(100% - 28px,1120px)}nav{height:68px}.nav-cta{padding:10px 13px;font-size:11px}.hero h1{font-size:47px;letter-spacing:-1.8px}.photo-stack{height:320px}.memory-card{right:-2px;top:35px}.date-card{left:-2px}.date-options{grid-template-columns:1fr}.panel{padding:19px}.section-head h2{font-size:36px}.footer-row{align-items:flex-start;flex-direction:column}}
 </style>
 </head>
 <body>
-<div class="wrap">
-
-  <section class="hero">
-    <p class="eyebrow">Our Class · Get-Together 2026</p>
-    <h1>You're Invited</h1>
-    <p class="sub">One more year, one more party. Same class, same energy — let's pick it up where 2024 left off.</p>
-    <p class="date-line">📍 Saturday, November 28, 2026</p>
-    <div class="countdown" id="countdown">
-      <div class="unit"><div class="n" id="cd-days">—</div><div class="l">Days</div></div>
-      <div class="unit"><div class="n" id="cd-hours">—</div><div class="l">Hours</div></div>
-      <div class="unit"><div class="n" id="cd-mins">—</div><div class="l">Mins</div></div>
+<nav class="wrap">
+  <a class="brand" href="#"><span class="brand-mark">↗</span><span>THE CLASS REUNION <span style="font-weight:400;color:#758077">’26</span></span></a>
+  <div class="navlinks"><a href="#plan">The plan</a><a href="#vote">Pick a date</a><a href="#ideas">Your ideas</a><a href="#memories">Memories</a></div>
+  <a class="nav-cta" href="#vote">Count me in ↗</a>
+</nav>
+<main>
+  <header class="hero wrap">
+    <div class="hero-copy">
+      <div class="eyebrow"><span class="dot"></span> Same class. New memories.</div>
+      <h1>Back to where<br>it <em>all began.</em></h1>
+      <p>One day to catch up, laugh about the old days, share a meal, and make a few new stories. Let's plan our class get-together — together.</p>
+      <div class="actions"><a class="btn btn-primary" href="#vote">I'm interested <span>↗</span></a><a class="btn btn-secondary" href="#plan">See the plan ↓</a></div>
+      <div class="hero-note">JUST OUR CLASS · NO OUTSIDE GUESTS · EVERYONE'S IDEAS WELCOME</div>
     </div>
-    <div class="collage">
-      <div class="ph"><span class="ph-label">2024 photo<br>goes here</span></div>
-      <div class="ph"><span class="ph-label">2024 photo</span></div>
-      <div class="ph"><span class="ph-label">2024 photo</span></div>
-    </div>
-  </section>
-
-  <section>
-    <p class="eyebrow">Flashback</p>
-    <h2>Last time, in 2024</h2>
-    <p class="lede">A few of us still bring these up in group chats. Here's what we're trying to top this year.</p>
-    <div class="gallery-grid">
-      <div class="ph"><span class="ph-label">Photo</span></div>
-      <div class="ph"><span class="ph-label">Photo</span></div>
-      <div class="ph"><span class="ph-label">Photo</span></div>
-      <div class="ph"><span class="ph-label">Photo</span></div>
-      <div class="ph"><span class="ph-label">Photo</span></div>
-      <div class="ph"><span class="ph-label">Photo</span></div>
-    </div>
-  </section>
-
-  <section style="padding-top:0">
-    <p class="eyebrow">The Details</p>
-    <div class="card">
-      <h2>The basics</h2>
-      <div class="grid2">
-        <div class="item"><div class="k">Who's invited</div><div class="v">Only students in our class. No outside guests.</div></div>
-        <div class="item"><div class="k">Cost per person</div><div class="v"><span class="fill">enter amount</span> — same for everyone.</div></div>
-        <div class="item"><div class="k">Lunch</div><div class="v">Included for everyone, no extra charge.</div></div>
-        <div class="item"><div class="k">Drinks (liquor)</div><div class="v">Optional. <span class="fill">enter extra charge</span> on top, only for those who want it.</div></div>
+    <div class="photo-stack">
+      <div class="photo-main">
+        <!-- Replace this placeholder with a favourite 2024 party photo -->
+        <div class="photo-placeholder"><div><span class="sun">☀</span><strong>Good people.<br>Great memories.</strong><small>2024 → 2026 · Let's do it again</small></div></div>
       </div>
+      <div class="float-card memory-card"><b>Remember this?</b><span>More moments like these<br>are waiting for us.</span></div>
+      <div class="float-card date-card"><span>PROPOSED DATE</span><strong>28 NOV</strong><small>Saturday · 2026</small></div>
     </div>
+  </header>
+  <div class="strip"><span><b>✳</b> One class, one day</span><span><b>♡</b> One shared lunch</span><span><b>↗</b> Your vote matters</span><span><b>☼</b> Memories in the making</span></div>
 
-    <div class="card">
-      <h2>Pick a date</h2>
-      <p class="lede" style="margin-bottom:10px">Nov 28 is the plan unless the class votes for another weekend. Say your pick in the form below.</p>
-      <table>
-        <tr><th>Weekend</th><th>Sat</th><th>Sun</th></tr>
-        <tr class="current"><td>Nov 28–29</td><td>28</td><td>29</td></tr>
-        <tr><td>Dec 5–6</td><td>5</td><td>6</td></tr>
-        <tr><td>Dec 12–13</td><td>12</td><td>13</td></tr>
-        <tr><td>Dec 19–20</td><td>19</td><td>20</td></tr>
-        <tr><td>Dec 26–27</td><td>26</td><td>27</td></tr>
-      </table>
-      <div class="notice">Voting closes and the final date locks in on <span class="fill">enter deadline</span>. The most-voted date wins; Nov 28 stays the plan if nothing beats it.</div>
+  <section id="plan" class="wrap">
+    <div class="section-head"><div><div class="kicker">The starting point</div><h2>A little plan.<br>A lot of possibilities.</h2></div><p>Nothing is final yet. This is our starting idea — help us shape the day so everyone can enjoy it.</p></div>
+    <div class="cards">
+      <article class="card"><div class="ico">🍽️</div><h3>Lunch, all together</h3><p>A meal for everyone is part of the plan. We'll agree on the menu and venue after hearing from the class.</p><span class="tag">PLANNED FOR EVERYONE</span></article>
+      <article class="card"><div class="ico">🎶</div><h3>Make it our kind of fun</h3><p>Games, music, a mini talent show, throwback photos, or simply catching up. Tell us what you'd enjoy.</p><span class="tag">YOU HELP DECIDE</span></article>
+      <article class="card"><div class="ico">🥂</div><h3>Optional extras</h3><p>Alcoholic drinks may be arranged for those who want them, with a separate additional charge. It's completely optional.</p><span class="tag">OPTIONAL · EXTRA COST</span></article>
     </div>
+    <div class="budget"><div><h3>Same contribution. Fair for everyone.</h3><p>Our aim is to keep the main contribution equal for every classmate and cover the shared arrangements transparently. Any optional extras, including alcoholic drinks, will be paid for separately by those who choose them. The final amount will be shared after we collect estimates.</p></div><div class="amount">One class.<br>One fair share.</div></div>
   </section>
 
-  <section style="padding-top:0">
-    <p class="eyebrow">Your Turn</p>
-    <div class="card">
-      <h2>RSVP, vote, and drop your ideas</h2>
-      <ul class="rules">
-        <li>Confirm you're coming (and tell us your name)</li>
-        <li>Vote for your preferred weekend</li>
-        <li>Say if you want the drinks add-on</li>
-        <li>Share your ideas — what should we actually <em>do</em> that day, and anything you'd add to this page</li>
-      </ul>
-      <div class="form-box">
-        <!-- Once the Google Form exists, replace this fallback with:
-             <iframe src="YOUR_FORM_EMBED_URL"></iframe>
-             (Google Form → Send → Embed <> → copy the src URL) -->
-        <div class="form-fallback">
-          <p>Form link coming soon — check back here, or ask in the class group.</p>
-          <a class="cta" href="#" id="form-link">Fill the form</a>
+  <section id="vote" class="vote-section">
+    <div class="wrap vote-layout">
+      <div class="vote-intro"><div class="kicker">Step 01 · Save your spot</div><h2>First, let's find a day that works.</h2><p>28 November 2026 is our proposed date. Vote for the dates you can make it, then tell us if you're interested in joining. We'll use everyone's responses to choose the best date.</p><div class="note"><strong>Quick note:</strong> This demo form shows a confirmation on this page, but it does not send or save responses yet. Connect it to Google Forms, Sheets, or a database before sharing the live website.</div></div>
+      <form class="panel" id="rsvpForm">
+        <h3>Classmate RSVP & date vote</h3><p class="sub">About a minute to fill in. Please respond as an individual classmate.</p>
+        <div class="field"><label for="fullname">Your full name *</label><input id="fullname" name="fullname" required placeholder="e.g. Kasun Perera"></div>
+        <div class="field"><label for="contact">Contact number or email *</label><input id="contact" name="contact" required placeholder="So the organisers can follow up"></div>
+        <div class="field"><span class="field-title">Which dates can you attend? Select all that work. *</span>
+          <div class="date-options">
+            <div class="date-option"><input type="checkbox" id="d28" name="dates" value="28 Nov 2026"><label for="d28"><strong>Sat, 28 Nov</strong><small>Our proposed date</small></label></div>
+            <div class="date-option"><input type="checkbox" id="d29" name="dates" value="29 Nov 2026"><label for="d29"><strong>Sun, 29 Nov</strong><small>Following day</small></label></div>
+            <div class="date-option"><input type="checkbox" id="d5" name="dates" value="5 Dec 2026"><label for="d5"><strong>Sat, 5 Dec</strong><small>One week later</small></label></div>
+            <div class="date-option"><input type="checkbox" id="d6" name="dates" value="6 Dec 2026"><label for="d6"><strong>Sun, 6 Dec</strong><small>One week later</small></label></div>
+          </div>
         </div>
-      </div>
+        <div class="field"><span class="field-title">Are you likely to join us? *</span><div class="choices">
+          <div class="choice"><input type="radio" id="yes" name="attendance" value="Yes, count me in" required><label for="yes">Yes, count me in!</label></div>
+          <div class="choice"><input type="radio" id="maybe" name="attendance" value="Maybe"><label for="maybe">Maybe</label></div>
+          <div class="choice"><input type="radio" id="no" name="attendance" value="Cannot attend"><label for="no">Can't make it</label></div>
+        </div></div>
+        <div class="field"><label for="food">Any dietary requirements?</label><select id="food" name="food"><option value="None shared">No special requirements</option><option>Vegetarian</option><option>Vegan</option><option>Food allergy / other (explain below)</option></select></div>
+        <div class="field"><label for="ideas">Anything else we should know? (optional)</label><textarea id="ideas" name="ideas" placeholder="Dietary notes, timing restrictions, or anything that helps us plan…"></textarea></div>
+        <label class="checkline"><input type="checkbox" required><span>I understand this is for our class only, and the date and arrangements are not final yet.</span></label>
+        <button class="btn btn-primary submit" type="submit">Submit my response ↗</button>
+        <div class="form-msg" id="formMsg" role="status"></div>
+      </form>
     </div>
   </section>
 
-  <section style="padding-top:0">
-    <div class="card">
-      <h2>House rules</h2>
-      <ul class="rules">
-        <li>Students only — no guests, no exceptions.</li>
-        <li>Everyone pays the same base amount, collected by <span class="fill">class rep name</span>.</li>
-        <li>The liquor charge is separate and only applies if you opt in.</li>
-        <li>One form response per person, please — makes the headcount and the food order accurate.</li>
-      </ul>
+  <section id="ideas" class="wrap">
+    <div class="section-head"><div><div class="kicker">Step 02 · Build the day</div><h2>What would make it<br>worth remembering?</h2></div><p>Pick the activities you like in the form below, or use these ideas to get the conversation going in the class group.</p></div>
+    <div class="idea-grid">
+      <div class="idea-box"><h3>Things we could do</h3><p>Choose a relaxed hangout or pack the day with activities — the class decides.</p><div class="idea-list"><span>🎤 Music & karaoke</span><span>🏆 Fun team games</span><span>📸 Photo corner</span><span>🧠 Class quiz</span><span>🎁 Secret gift exchange</span><span>🎬 2024 throwback slideshow</span><span>⚽ Friendly sports</span><span>💬 Catch-up time</span></div></div>
+      <div class="idea-box"><h3>Help us plan the details</h3><p>We'll need your input on a few practical things before confirming anything.</p><div class="idea-list"><span>📍 Venue / school grounds</span><span>🍛 Lunch menu</span><span>💰 Fair shared budget</span><span>🕙 Start & finish time</span><span>🎵 Music preferences</span><span>🚌 Transport needs</span></div><p style="margin-top:18px">Have a suggestion? Add it to the response form or send it to the organisers.</p><a class="btn btn-secondary" href="#vote">Share your response ↗</a></div>
     </div>
   </section>
 
-  <footer>
-    Questions? Ask <span class="fill">your name / contact</span>. Made for the class of <span class="fill">class name</span>.
-  </footer>
-</div>
-
+  <section id="memories" class="gallery">
+    <div class="wrap"><div class="section-head"><div><div class="kicker">A look back</div><h2>2024 was just the beginning.</h2></div><p>We'll add photos from our last get-together here. Got a favourite photo? Send it to the organisers.</p></div>
+      <div class="gallery-grid"><div class="gallery-tile"><div><div class="gallery-label">The moments<br>that brought us here.</div><small>Replace with a 2024 group photo</small></div></div><div class="gallery-tile"><div><div class="gallery-label">The laughs</div><small>Add a candid photo</small></div></div><div class="gallery-tile"><div><div class="gallery-label">The whole crew</div><small>Add another memory</small></div></div></div>
+      <div class="gallery-hint">Photo placeholders are intentional — swap them with your own class photos before publishing.</div>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap footer-row"><div><strong>THE CLASS REUNION ’26</strong> · Made by classmates, for classmates.</div><div>Private class event · Details subject to the class vote</div></div></footer>
 <script>
-(function(){
-  var target = new Date("2026-11-28T00:00:00");
-  function tick(){
-    var diff = target - new Date();
-    if (diff < 0) diff = 0;
-    var d = Math.floor(diff / 86400000);
-    var h = Math.floor((diff % 86400000) / 3600000);
-    var m = Math.floor((diff % 3600000) / 60000);
-    document.getElementById("cd-days").textContent = d;
-    document.getElementById("cd-hours").textContent = h;
-    document.getElementById("cd-mins").textContent = m;
-  }
-  tick();
-  setInterval(tick, 30000);
-})();
+document.getElementById('rsvpForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const name = document.getElementById('fullname').value.trim();
+  const dates = [...document.querySelectorAll('input[name="dates"]:checked')].map(x=>x.value);
+  const msg = document.getElementById('formMsg');
+  if(!dates.length){msg.style.display='block';msg.textContent='Please select at least one date that works for you.';document.querySelector('.date-options').scrollIntoView({behavior:'smooth',block:'center'});return;}
+  msg.style.display='block';
+  msg.innerHTML = '<strong>Thanks, '+name.replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))+'!</strong> Your demo response is ready, and you selected: '+dates.join(', ')+'. This prototype does not save or send it yet. Connect a form backend before collecting real responses.';
+  msg.scrollIntoView({behavior:'smooth',block:'nearest'});
+});
 </script>
 </body>
 </html>
