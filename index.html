@@ -59,7 +59,7 @@ footer{padding:32px 0;border-top:1px solid var(--line)}.footer-row{display:flex;
 
   <section id="vote" class="vote-section">
     <div class="wrap vote-layout">
-      <div class="vote-intro"><div class="kicker">Step 01 · Save your spot</div><h2>First, let's find a day that works.</h2><p>28 November 2026 is our proposed date. Vote for the dates you can make it, then tell us if you're interested in joining. We'll use everyone's responses to choose the best date.</p><div class="note"><strong>Quick note:</strong> This demo form shows a confirmation on this page, but it does not send or save responses yet. Connect it to Google Forms, Sheets, or a database before sharing the live website.</div></div>
+      <div class="vote-intro"><div class="kicker">Step 01 · Save your spot</div><h2>First, let's find a day that works.</h2><p>28 November 2026 is our proposed date. Vote for the dates you can make it, then tell us if you're interested in joining. We'll use everyone's responses to choose the best date.</p><div class="note"><strong>Quick note:</strong> Every response here is emailed straight to the organisers — nothing more to set up.</div></div>
       <form class="panel" id="rsvpForm">
         <h3>Classmate RSVP & date vote</h3><p class="sub">About a minute to fill in. Please respond as an individual classmate.</p>
         <div class="field"><label for="fullname">Your full name *</label><input id="fullname" name="fullname" required placeholder="e.g. Kasun Perera"></div>
@@ -80,6 +80,9 @@ footer{padding:32px 0;border-top:1px solid var(--line)}.footer-row{display:flex;
         <div class="field"><label for="food">Any dietary requirements?</label><select id="food" name="food"><option value="None shared">No special requirements</option><option>Vegetarian</option><option>Vegan</option><option>Food allergy / other (explain below)</option></select></div>
         <div class="field"><label for="ideas">Anything else we should know? (optional)</label><textarea id="ideas" name="ideas" placeholder="Dietary notes, timing restrictions, or anything that helps us plan…"></textarea></div>
         <label class="checkline"><input type="checkbox" required><span>I understand this is for our class only, and the date and arrangements are not final yet.</span></label>
+        <input type="hidden" name="_subject" value="New Class Reunion RSVP">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
         <button class="btn btn-primary submit" type="submit">Submit my response ↗</button>
         <div class="form-msg" id="formMsg" role="status"></div>
       </form>
@@ -105,13 +108,35 @@ footer{padding:32px 0;border-top:1px solid var(--line)}.footer-row{display:flex;
 <script>
 document.getElementById('rsvpForm').addEventListener('submit', function(e){
   e.preventDefault();
+  const form = e.target;
   const name = document.getElementById('fullname').value.trim();
   const dates = [...document.querySelectorAll('input[name="dates"]:checked')].map(x=>x.value);
   const msg = document.getElementById('formMsg');
+  const esc = s => s.replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   if(!dates.length){msg.style.display='block';msg.textContent='Please select at least one date that works for you.';document.querySelector('.date-options').scrollIntoView({behavior:'smooth',block:'center'});return;}
-  msg.style.display='block';
-  msg.innerHTML = '<strong>Thanks, '+name.replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))+'!</strong> Your demo response is ready, and you selected: '+dates.join(', ')+'. This prototype does not save or send it yet. Connect a form backend before collecting real responses.';
-  msg.scrollIntoView({behavior:'smooth',block:'nearest'});
+  const submitBtn = form.querySelector('.submit');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending…';
+  fetch('https://formsubmit.co/ajax/myownbusiness1st@gmail.com', {
+    method: 'POST',
+    headers: { 'Accept': 'application/json' },
+    body: new FormData(form)
+  }).then(res => {
+    if(!res.ok) throw new Error('bad response');
+    msg.style.display='block';
+    msg.innerHTML = '<strong>Thanks, '+esc(name)+'!</strong> Your response is in — you picked: '+dates.join(', ')+'.';
+    msg.scrollIntoView({behavior:'smooth',block:'nearest'});
+    form.reset();
+  }).catch(() => {
+    msg.style.display='block';
+    msg.style.background='#f6e2d9';
+    msg.style.color='#8a3b1f';
+    msg.innerHTML = 'Something went wrong sending that. Please try again, or message the organisers directly.';
+    msg.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }).finally(() => {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Submit my response ↗';
+  });
 });
 </script>
 </body>
