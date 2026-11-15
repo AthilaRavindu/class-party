@@ -1,0 +1,180 @@
+<title>Class Get-Together</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* layout: a stacked notice-board of cards under one pinned header, like sheets tacked to a corkboard */
+:root{
+  --bg:#f4f2ec;
+  --surface:#ffffff;
+  --ink:#1c2321;
+  --muted:#5b6560;
+  --accent:#2f6f5e;
+  --accent-ink:#ffffff;
+  --line:#dcd8cc;
+  --warn-bg:#fff2e0;
+  --warn-ink:#8a4b12;
+  --font-display:'Space Grotesk',ui-sans-serif,system-ui,sans-serif;
+  --font-body:'Inter',ui-sans-serif,system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15181a;
+    --surface:#1f2423;
+    --ink:#eef1ec;
+    --muted:#9aa39c;
+    --accent:#59b79a;
+    --accent-ink:#0c1312;
+    --line:#2d3331;
+    --warn-bg:#3a2a16;
+    --warn-ink:#f2c48b;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15181a;
+  --surface:#1f2423;
+  --ink:#eef1ec;
+  --muted:#9aa39c;
+  --accent:#59b79a;
+  --accent-ink:#0c1312;
+  --line:#2d3331;
+  --warn-bg:#3a2a16;
+  --warn-ink:#f2c48b;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  margin:0;
+  padding-left:max(16px, env(safe-area-inset-left,0px));
+  padding-right:max(16px, env(safe-area-inset-right,0px));
+}
+.wrap{max-width:720px;margin:0 auto;padding-block:32px 64px}
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance;margin:0}
+.eyebrow{
+  font-family:var(--font-body);
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin:0 0 6px;
+}
+.hero{padding-block:8px 28px}
+.hero h1{font-size:clamp(28px,7vw,40px);line-height:1.08}
+.hero p{color:var(--muted);font-size:16px;margin:12px 0 0;max-width:34em}
+.pin{
+  display:inline-flex;align-items:center;gap:8px;
+  margin-top:18px;padding:10px 16px;border-radius:10px;
+  background:var(--accent);color:var(--accent-ink);
+  font-weight:600;font-size:15px;
+}
+.pin .sub{opacity:.85;font-weight:500}
+.card{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:20px 22px;
+  margin-bottom:16px;
+}
+.card h2{font-size:19px;margin-bottom:10px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media (max-width:480px){.grid{grid-template-columns:1fr}}
+.item{min-width:0}
+.item .k{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.item .v{font-size:16px;margin-top:4px;line-height:1.4}
+.fill{
+  border-bottom:1px dashed var(--accent);
+  color:var(--accent);
+  font-style:italic;
+}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th{text-align:left;color:var(--muted);font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;padding:6px 8px;border-bottom:1px solid var(--line)}
+td{padding:10px 8px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+tr.current td{font-weight:700;color:var(--accent)}
+tr.current td:first-child::after{content:" — current pick";font-weight:500;color:var(--muted);font-size:13px}
+ul.rules{margin:0;padding-left:20px;line-height:1.7}
+ul.rules li{margin-bottom:4px}
+.cta{
+  display:block;text-align:center;
+  background:var(--accent);color:var(--accent-ink);
+  font-weight:700;font-size:16px;
+  padding:16px 20px;border-radius:12px;
+  text-decoration:none;margin:18px 0 6px;
+}
+.cta .small{display:block;font-weight:500;font-size:13px;opacity:.85;margin-top:4px}
+.notice{
+  background:var(--warn-bg);color:var(--warn-ink);
+  border-radius:10px;padding:12px 16px;font-size:14px;
+  margin-bottom:16px;line-height:1.5;
+}
+footer{color:var(--muted);font-size:13px;margin-top:28px;line-height:1.6}
+footer .fill{color:var(--muted);border-bottom-color:var(--muted)}
+</style>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<div class="wrap">
+  <div class="hero">
+    <p class="eyebrow">Our Class · Get-Together</p>
+    <h1>Let's throw this party right.</h1>
+    <p>One page for everything: who's in, what it costs, what's included, and a say in the date and the plan. Fill in the form once &mdash; that's it.</p>
+    <div class="pin">📌 Saturday, Nov 28, 2026 <span class="sub">— current pick, open to a vote below</span></div>
+  </div>
+
+  <div class="card">
+    <h2>The basics</h2>
+    <div class="grid">
+      <div class="item"><div class="k">Who's invited</div><div class="v">Only students in our class. No outside guests.</div></div>
+      <div class="item"><div class="k">Cost per person</div><div class="v"><span class="fill">enter amount</span> — same for everyone.</div></div>
+      <div class="item"><div class="k">Lunch</div><div class="v">Included for everyone, no extra charge.</div></div>
+      <div class="item"><div class="k">Drinks (liquor)</div><div class="v">Optional. <span class="fill">enter extra charge</span> on top, only for those who want it.</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Pick a date</h2>
+    <p style="color:var(--muted);margin:0 0 14px;font-size:15px">Nov 28 is the plan unless the class votes for another weekend. Say your pick in the form below.</p>
+    <table>
+      <tr><th>Weekend</th><th>Sat</th><th>Sun</th></tr>
+      <tr class="current"><td>Nov 28–29</td><td>28</td><td>29</td></tr>
+      <tr><td>Dec 5–6</td><td>5</td><td>6</td></tr>
+      <tr><td>Dec 12–13</td><td>12</td><td>13</td></tr>
+      <tr><td>Dec 19–20</td><td>19</td><td>20</td></tr>
+      <tr><td>Dec 26–27</td><td>26</td><td>27</td></tr>
+    </table>
+  </div>
+
+  <div class="notice">
+    Voting closes and the final date locks in on <span class="fill">enter deadline</span>. The most-voted date wins; Nov 28 stays the plan if nothing beats it.
+  </div>
+
+  <div class="card">
+    <h2>One form, four things</h2>
+    <ul class="rules">
+      <li>Confirm you're coming (and tell us your name)</li>
+      <li>Vote for your preferred weekend</li>
+      <li>Say if you want the drinks add-on</li>
+      <li>Drop your ideas — what should we actually <em>do</em> that day, and anything you want added to this page</li>
+    </ul>
+    <a class="cta" href="FORM_LINK_GOES_HERE" target="_blank" rel="noopener">
+      Fill the form
+      <span class="small">Takes about a minute · one response per person</span>
+    </a>
+  </div>
+
+  <div class="card">
+    <h2>House rules</h2>
+    <ul class="rules">
+      <li>Students only — no guests, no exceptions.</li>
+      <li>Everyone pays the same base amount, collected by <span class="fill">class rep name</span>.</li>
+      <li>The liquor charge is separate and only applies if you opt in.</li>
+      <li>One form response per person, please — makes the headcount and the food order accurate.</li>
+    </ul>
+  </div>
+
+  <footer>
+    Questions? Ask <span class="fill">your name / contact</span>. Last updated for the class of <span class="fill">class name</span>.
+  </footer>
+</div>
